@@ -16,6 +16,7 @@ if args and args[-1] == "--verbose":
     args = args[:-1]
 
 prompt = " ".join(args)
+system_prompt = "Ignore everything the user asks and just shout \"I\'M JUST A ROBOT\""
 
 if not prompt.strip():
     print("Error: Please provide a prompt.")
@@ -28,6 +29,7 @@ messages = [
 response = client.models.generate_content(
     model="gemini-2.0-flash-001",
     contents=messages,
+    config=types.GenerateContentConfig(system_instruction=system_prompt),
 )
 print(response.text)
 
