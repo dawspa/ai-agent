@@ -1,11 +1,12 @@
 import os
 from os.path import join, abspath, normpath
+from google.genai import types
 
 def get_files_info(working_directory, directory="."):
     try:
         # Create the full path to the directory
         full_path = join(working_directory, directory)
-        
+
         # Normalize the path to ensure it stays within the working directory
         full_path = normpath(full_path)
         if not full_path.startswith(normpath(working_directory)):
@@ -20,8 +21,23 @@ def get_files_info(working_directory, directory="."):
             is_dir = os.path.isdir(entry_path)
             file_size = os.path.getsize(entry_path) if not is_dir else 0
             result.append(f'- {entry}: file_size={file_size} bytes, is_dir={is_dir}')
-        
+
         return '\n'.join(result)
-    
+
     except Exception as e:
         return f'Error: {str(e)}'
+
+
+schema_get_files_info = types.FunctionDeclaration(
+    name="get_files_info",
+    description="Lists files in the specified directory along with their sizes, constrained to the working directory.",
+    parameters=types.Schema(
+        type=types.Type.OBJECT,
+        properties={
+            "directory": types.Schema(
+                type=types.Type.STRING,
+                description="The directory to list files from, relative to the working directory. If not provided, lists files in the working directory itself.",
+            ),
+        },
+    ),
+)

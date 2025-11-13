@@ -1,6 +1,7 @@
 import subprocess
 import os
 from os.path import join, normpath
+from google.genai import types
 
 
 def run_python_file(working_directory, file_path, args=[]):
@@ -41,3 +42,23 @@ def run_python_file(working_directory, file_path, args=[]):
         return output
     except Exception as e:
         return f"Error: executing Python file: {e}"
+
+schema_run_python_file = types.FunctionDeclaration(
+    name="run_python_file",
+    description="Run Python code with possible additional arguments, constrained to the working directory.",
+    parameters=types.Schema(
+        type=types.Type.OBJECT,
+        properties={
+            "file_path": types.Schema(
+                type=types.Type.STRING,
+                description="The path of the Python file to run, relative to the working directory.",
+            ),
+            "args": types.Schema(
+                type=types.Type.ARRAY,
+                description="List of optional arguments for the Python file run. Empty by default",
+                items=types.Schema(type=types.Type.STRING),
+            ),
+        },
+        required=["file_path"],
+    ),
+)
