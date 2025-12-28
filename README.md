@@ -1,7 +1,7 @@
-```markdown
+
 # Project Documentation
 
-This project contains a Python-based agent that can perform various file operations and execute Python scripts.
+This project contains a Python-based AI agent that can perform various file operations and execute Python scripts.
 
 ## Project Structure
 
@@ -38,6 +38,13 @@ The project has the following directory structure:
    cd /path/to/your/project
    ```
 
+2. **Add your API to environment variables**:
+   Create an `.env` in the root directory of the project.
+   Add your Gemini API key there.
+   ```python
+   GEMINI_API_KEY="key"
+   ```
+
 2. **Run the agent using `main.py`**:
    ```bash
    python main.py #or
@@ -62,4 +69,3 @@ Once the agent is running, you can interact with it by asking questions or givin
 - "Fix calculation error in `calculator`."
 
 The agent will respond with the output of the executed commands or the information you requested.
-```
