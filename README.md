@@ -42,13 +42,13 @@ The project has the following directory structure:
 
 2. **Add your API to environment variables**:
 
-   Create an `.env` in the root directory of the project.
+   Create an `.env` file in the root directory of the project.
    Add your Gemini API key there.
    ```python
    GEMINI_API_KEY="key"
    ```
 
-2. **Run the agent using `main.py`**:
+3. **Run the agent using `main.py`**:
    ```bash
    python main.py #or
    uv run ./main.py "question"
