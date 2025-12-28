@@ -1,3 +1,4 @@
+
 # calculator.py
 
 
@@ -10,10 +11,10 @@ class Calculator:
             "/": lambda a, b: a / b,
         }
         self.precedence = {
-            "+": 1,
-            "-": 1,
-            "*": 2,
-            "/": 2,
+            "+": 1,  # Lower precedence for addition
+            "-": 1,  # Lower precedence for subtraction
+            "*": 2,  # Higher precedence for multiplication
+            "/": 2,  # Higher precedence for division
         }
 
     def evaluate(self, expression):
@@ -28,6 +29,7 @@ class Calculator:
 
         for token in tokens:
             if token in self.operators:
+                # Process operators with higher or equal precedence
                 while (
                     operators
                     and operators[-1] in self.operators
@@ -41,6 +43,7 @@ class Calculator:
                 except ValueError:
                     raise ValueError(f"invalid token: {token}")
 
+        # Apply remaining operators
         while operators:
             self._apply_operator(operators, values)
 
