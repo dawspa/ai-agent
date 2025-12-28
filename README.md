@@ -7,6 +7,7 @@ This project contains a Python-based AI agent that can perform various file oper
 
 The project has the following directory structure:
 
+```bash
 .
 ├── pkg
 │   ├── __pycache__
@@ -19,6 +20,7 @@ The project has the following directory structure:
 ├── README.md
 ├── lorem.txt
 └── tests.py
+```
 
 ## Files
 
@@ -39,6 +41,7 @@ The project has the following directory structure:
    ```
 
 2. **Add your API to environment variables**:
+
    Create an `.env` in the root directory of the project.
    Add your Gemini API key there.
    ```python
